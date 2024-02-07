@@ -9,14 +9,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/v1/refinance")
 @RequiredArgsConstructor
 public class RefinanceController {
     private final RefinanceService refinanceService;
 
-    @PostMapping("/refinance")
+    @PostMapping
     public ResponseEntity<OdmLimitRequest> refinance(@RequestBody OdmLimitRequest request){
-         OdmLimitRequest requestForRefinancing =  refinanceService.refinancedCombination(request);
-         return new ResponseEntity<>(requestForRefinancing, HttpStatusCode.valueOf(200));
+         return  ResponseEntity.ok(refinanceService.refinancedCombination(request));
     }
 }
